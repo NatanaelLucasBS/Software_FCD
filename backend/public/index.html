@@ -3,69 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PolyGrade — Consulta Curricular Multiparadigma (TADS 2019 / UFRN)</title>
+  <title>PolyGrade — Consulta Curricular Multiparadigma</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0b1120;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", sans-serif;
+      background-color: #f5f5f7;
+      color: #1d1d1f;
+      -webkit-font-smoothing: antialiased;
     }
-    code, pre {
-      font-family: 'Fira Code', monospace;
+    code, pre, .font-mono {
+      font-family: "JetBrains Mono", monospace;
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #1e293b;
+      background: #f5f5f7;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #475569;
-      border-radius: 3px;
+      background: #d2d2d7;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #86868b;
     }
   </style>
 </head>
-<body class="text-slate-100 min-h-screen flex flex-col custom-scrollbar">
+<body class="min-h-screen flex flex-col custom-scrollbar">
 
-  <!-- TOPBAR -->
-  <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+  <!-- TOPBAR (Estilo Apple: limpo, branco sólido, sem gradientes, sem logo, apenas tipografia pura) -->
+  <header class="bg-white border-b border-[#e5e5ea] sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-4">
       
-      <!-- Brand & Title -->
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20">
-          <i data-lucide="layers" class="w-5 h-5 text-white"></i>
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h1 class="font-extrabold text-lg text-white tracking-tight">PolyGrade</h1>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">UFRN • 2019</span>
-          </div>
-          <p class="text-xs text-slate-400">Consulta à Estrutura Curricular Multiparadigma</p>
-        </div>
-      </div>
-
-      <!-- Course Selector -->
-      <div class="flex items-center gap-2 bg-slate-800/80 p-1 rounded-xl border border-slate-700/60">
-        <span class="text-xs text-slate-400 px-2 font-medium">Curso:</span>
-        <button id="btn-curso-tads" onclick="setCurso('TADS')" class="px-3 py-1 rounded-lg text-xs font-semibold bg-sky-600 text-white shadow-sm transition">
-          TADS (EAJ)
-        </button>
-        <button id="btn-curso-bti" onclick="setCurso('BTI')" class="px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition">
-          BTI (IMD)
-        </button>
-      </div>
-
-      <!-- Links para Modelagem e Vídeo -->
+      <!-- Brand & Title (Apenas Nome, Tipografia Sólida) -->
       <div class="flex items-center gap-3">
-        <a href="/modelos_visuais" target="_blank" class="flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 transition">
-          <i data-lucide="network" class="w-4 h-4 text-purple-400"></i>
-          <span>Modelos Lógicos (Mermaid)</span>
+        <span class="font-semibold text-base text-[#1d1d1f] tracking-tight">PolyGrade</span>
+        <span class="text-[11px] font-medium text-[#86868b] border-l border-[#e5e5ea] pl-3">UFRN • Estrutura Curricular</span>
+      </div>
+
+      <!-- Course Selector (Botões sólidos estilo iOS segmented control) -->
+      <div class="flex items-center bg-[#f2f2f7] p-1 rounded-lg">
+        <button id="btn-curso-tads" onclick="setCurso('TADS')" class="px-3.5 py-1 rounded-md text-xs font-medium bg-white text-[#1d1d1f] shadow-sm transition">
+          TADS
+        </button>
+        <button id="btn-curso-bti" onclick="setCurso('BTI')" class="px-3.5 py-1 rounded-md text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] transition">
+          BTI
+        </button>
+      </div>
+
+      <!-- Links para Modelagem -->
+      <div class="flex items-center">
+        <a href="/modelos_visuais" target="_blank" class="text-xs font-medium text-[#0066cc] hover:underline flex items-center gap-1">
+          <span>Modelos Lógicos</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
         </a>
       </div>
 
@@ -73,60 +70,52 @@
   </header>
 
   <!-- MAIN CONTAINER -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-6">
 
-    <!-- CONTROLES PRINCIPAIS: SELETOR DE BD E FILTROS -->
-    <section class="bg-slate-900/60 backdrop-blur border border-slate-800 rounded-2xl p-5 shadow-xl space-y-5">
+    <!-- CONTROLES: SELETOR DE BD E FILTROS -->
+    <section class="bg-white border border-[#e5e5ea] rounded-xl p-5 shadow-sm space-y-5">
       
       <!-- Seletor de Banco de Dados -->
       <div>
-        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2.5">
-          1. Escolha o Banco de Dados para a Consulta:
+        <label class="block text-[11px] font-semibold text-[#86868b] uppercase tracking-wider mb-2.5">
+          Motor de Banco de Dados
         </label>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
           
-          <button onclick="setDb('postgres')" id="db-btn-postgres" class="db-choice-btn flex items-center justify-between p-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700/80 transition group active">
-            <div class="flex items-center space-x-2.5">
-              <span class="w-3 h-3 rounded-full bg-blue-500 shadow-sm shadow-blue-500/50"></span>
-              <div class="text-left">
-                <p class="text-xs font-bold text-white">PostgreSQL 16</p>
-                <p class="text-[10px] text-slate-400">Relacional (SQL 3FN)</p>
-              </div>
+          <!-- PostgreSQL -->
+          <button onclick="setDb('postgres')" id="db-btn-postgres" class="db-choice-btn flex items-center justify-between p-3 rounded-lg border border-[#0066cc] bg-[#f5f9ff] text-left transition">
+            <div>
+              <p class="text-xs font-semibold text-[#1d1d1f]">PostgreSQL 16</p>
+              <p class="text-[11px] text-[#86868b]">Relacional (3FN / SQL)</p>
             </div>
-            <i data-lucide="check" class="w-4 h-4 text-blue-400 opacity-100 checkmark"></i>
+            <i data-lucide="check" class="w-4 h-4 text-[#0066cc] checkmark opacity-100"></i>
           </button>
 
-          <button onclick="setDb('mongo')" id="db-btn-mongo" class="db-choice-btn flex items-center justify-between p-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700/80 transition group">
-            <div class="flex items-center space-x-2.5">
-              <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
-              <div class="text-left">
-                <p class="text-xs font-bold text-white">MongoDB 7.0</p>
-                <p class="text-[10px] text-slate-400">Documentos (NoSQL)</p>
-              </div>
+          <!-- MongoDB -->
+          <button onclick="setDb('mongo')" id="db-btn-mongo" class="db-choice-btn flex items-center justify-between p-3 rounded-lg border border-[#e5e5ea] bg-white hover:bg-[#fafafa] text-left transition">
+            <div>
+              <p class="text-xs font-semibold text-[#1d1d1f]">MongoDB 7.0</p>
+              <p class="text-[11px] text-[#86868b]">Documentos (NoSQL)</p>
             </div>
-            <i data-lucide="check" class="w-4 h-4 text-emerald-400 opacity-0 checkmark"></i>
+            <i data-lucide="check" class="w-4 h-4 text-[#0066cc] checkmark opacity-0"></i>
           </button>
 
-          <button onclick="setDb('neo4j')" id="db-btn-neo4j" class="db-choice-btn flex items-center justify-between p-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700/80 transition group">
-            <div class="flex items-center space-x-2.5">
-              <span class="w-3 h-3 rounded-full bg-purple-500 shadow-sm shadow-purple-500/50"></span>
-              <div class="text-left">
-                <p class="text-xs font-bold text-white">Neo4j 5</p>
-                <p class="text-[10px] text-slate-400">Grafos (Cypher)</p>
-              </div>
+          <!-- Neo4j -->
+          <button onclick="setDb('neo4j')" id="db-btn-neo4j" class="db-choice-btn flex items-center justify-between p-3 rounded-lg border border-[#e5e5ea] bg-white hover:bg-[#fafafa] text-left transition">
+            <div>
+              <p class="text-xs font-semibold text-[#1d1d1f]">Neo4j 5</p>
+              <p class="text-[11px] text-[#86868b]">Grafo (Cypher / LPG)</p>
             </div>
-            <i data-lucide="check" class="w-4 h-4 text-purple-400 opacity-0 checkmark"></i>
+            <i data-lucide="check" class="w-4 h-4 text-[#0066cc] checkmark opacity-0"></i>
           </button>
 
-          <button onclick="setDb('all')" id="db-btn-all" class="db-choice-btn flex items-center justify-between p-3 rounded-xl border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 transition group">
-            <div class="flex items-center space-x-2.5">
-              <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
-              <div class="text-left">
-                <p class="text-xs font-bold text-amber-300">Comparar Todos</p>
-                <p class="text-[10px] text-amber-400/80">Benchmark Paralelo</p>
-              </div>
+          <!-- Comparar Todos -->
+          <button onclick="setDb('all')" id="db-btn-all" class="db-choice-btn flex items-center justify-between p-3 rounded-lg border border-[#e5e5ea] bg-white hover:bg-[#fafafa] text-left transition">
+            <div>
+              <p class="text-xs font-semibold text-[#1d1d1f]">Comparar Todos</p>
+              <p class="text-[11px] text-[#86868b]">Benchmark Simultâneo</p>
             </div>
-            <i data-lucide="gauge" class="w-4 h-4 text-amber-400 opacity-100"></i>
+            <i data-lucide="play" class="w-3.5 h-3.5 text-[#86868b]"></i>
           </button>
 
         </div>
@@ -134,44 +123,44 @@
 
       <!-- Barra de Filtros -->
       <div>
-        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2.5">
-          2. Filtros de Pesquisa:
+        <label class="block text-[11px] font-semibold text-[#86868b] uppercase tracking-wider mb-2.5">
+          Filtro e Busca
         </label>
         <div class="flex flex-col sm:flex-row gap-3">
           
           <!-- Busca Textual -->
           <div class="relative flex-1">
-            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+            <i data-lucide="search" class="w-4 h-4 text-[#86868b] absolute left-3 top-2.5"></i>
             <input 
               type="text" 
               id="search-input" 
-              placeholder="Buscar por código (ex: TAD0102) ou palavra-chave (ex: Banco, Algoritmos)..." 
-              class="w-full pl-10 pr-4 py-2.5 bg-slate-800/90 border border-slate-700 rounded-xl text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"
+              placeholder="Buscar por código (ex: TAD0102) ou nome da disciplina..." 
+              class="w-full pl-9 pr-3.5 py-2 bg-[#f5f5f7] border border-[#e5e5ea] rounded-lg text-xs text-[#1d1d1f] placeholder-[#86868b] focus:outline-none focus:border-[#0066cc] focus:bg-white transition"
               oninput="debounceSearch()"
             />
           </div>
 
           <!-- Filtro por Período -->
-          <div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="period-buttons">
-            <button onclick="setPeriodo('')" class="period-btn px-3 py-2 rounded-xl text-xs font-semibold bg-sky-600 text-white whitespace-nowrap transition" data-period="">
+          <div class="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0" id="period-buttons">
+            <button onclick="setPeriodo('')" class="period-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-[#1d1d1f] text-white whitespace-nowrap transition" data-period="">
               Todos
             </button>
-            <button onclick="setPeriodo('1')" class="period-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap transition" data-period="1">
+            <button onclick="setPeriodo('1')" class="period-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f2f2f7] text-[#1d1d1f] hover:bg-[#e5e5ea] whitespace-nowrap transition" data-period="1">
               1º Período
             </button>
-            <button onclick="setPeriodo('2')" class="period-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap transition" data-period="2">
+            <button onclick="setPeriodo('2')" class="period-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f2f2f7] text-[#1d1d1f] hover:bg-[#e5e5ea] whitespace-nowrap transition" data-period="2">
               2º Período
             </button>
-            <button onclick="setPeriodo('3')" class="period-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap transition" data-period="3">
+            <button onclick="setPeriodo('3')" class="period-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f2f2f7] text-[#1d1d1f] hover:bg-[#e5e5ea] whitespace-nowrap transition" data-period="3">
               3º Período
             </button>
-            <button onclick="setPeriodo('4')" class="period-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap transition" data-period="4">
+            <button onclick="setPeriodo('4')" class="period-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f2f2f7] text-[#1d1d1f] hover:bg-[#e5e5ea] whitespace-nowrap transition" data-period="4">
               4º Período
             </button>
-            <button onclick="setPeriodo('5')" class="period-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap transition" data-period="5">
+            <button onclick="setPeriodo('5')" class="period-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f2f2f7] text-[#1d1d1f] hover:bg-[#e5e5ea] whitespace-nowrap transition" data-period="5">
               5º Período
             </button>
-            <button onclick="setPeriodo('6')" class="period-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap transition" data-period="6">
+            <button onclick="setPeriodo('6')" class="period-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f2f2f7] text-[#1d1d1f] hover:bg-[#e5e5ea] whitespace-nowrap transition" data-period="6">
               6º Período
             </button>
           </div>
@@ -181,103 +170,82 @@
 
     </section>
 
-    <!-- PAINEL DE TELEMETRIA E TEMPOS DE RESPOSTA -->
+    <!-- PAINEL DE TELEMETRIA (Cards Minimalistas Apple) -->
     <section id="telemetry-panel" class="grid grid-cols-1 md:grid-cols-3 gap-4">
       
       <!-- Card Tempo de Banco -->
-      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 flex items-center justify-between">
-        <div>
-          <p class="text-xs text-slate-400 font-medium">Tempo de Execução no Banco</p>
-          <div class="flex items-baseline gap-1 mt-1">
-            <span id="metric-db-time" class="text-2xl font-black text-sky-400">0.00</span>
-            <span class="text-xs text-slate-400">ms</span>
-          </div>
-          <p class="text-[10px] text-slate-500 mt-0.5">Medido via process.hrtime no backend</p>
+      <div class="bg-white border border-[#e5e5ea] rounded-xl p-4 shadow-sm">
+        <p class="text-[11px] font-medium text-[#86868b] uppercase tracking-wider">Tempo no Banco de Dados</p>
+        <div class="flex items-baseline gap-1 mt-1">
+          <span id="metric-db-time" class="text-2xl font-semibold text-[#1d1d1f] tracking-tight">0.00</span>
+          <span class="text-xs text-[#86868b]">ms</span>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400">
-          <i data-lucide="cpu" class="w-5 h-5"></i>
-        </div>
+        <p class="text-[11px] text-[#86868b] mt-0.5">Telemetria interna de execução da query</p>
       </div>
 
       <!-- Card Tempo Total HTTP -->
-      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 flex items-center justify-between">
-        <div>
-          <p class="text-xs text-slate-400 font-medium">Tempo Total de Resposta (HTTP)</p>
-          <div class="flex items-baseline gap-1 mt-1">
-            <span id="metric-total-time" class="text-2xl font-black text-emerald-400">0.00</span>
-            <span class="text-xs text-slate-400">ms</span>
-          </div>
-          <p class="text-[10px] text-slate-500 mt-0.5">Ciclo completo (Navegador ⇄ Servidor)</p>
+      <div class="bg-white border border-[#e5e5ea] rounded-xl p-4 shadow-sm">
+        <p class="text-[11px] font-medium text-[#86868b] uppercase tracking-wider">Tempo Total de Resposta</p>
+        <div class="flex items-baseline gap-1 mt-1">
+          <span id="metric-total-time" class="text-2xl font-semibold text-[#1d1d1f] tracking-tight">0.00</span>
+          <span class="text-xs text-[#86868b]">ms</span>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-          <i data-lucide="timer" class="w-5 h-5"></i>
-        </div>
+        <p class="text-[11px] text-[#86868b] mt-0.5">Ciclo completo navegador ⇄ API</p>
       </div>
 
-      <!-- Card Total Retornado -->
-      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 flex items-center justify-between">
-        <div>
-          <p class="text-xs text-slate-400 font-medium">Disciplinas Encontradas</p>
-          <div class="flex items-baseline gap-1 mt-1">
-            <span id="metric-count" class="text-2xl font-black text-purple-400">0</span>
-            <span class="text-xs text-slate-400">componentes</span>
-          </div>
-          <p id="metric-db-label" class="text-[10px] text-slate-500 mt-0.5">Executado em: PostgreSQL</p>
+      <!-- Card Componentes Encontrados -->
+      <div class="bg-white border border-[#e5e5ea] rounded-xl p-4 shadow-sm">
+        <p class="text-[11px] font-medium text-[#86868b] uppercase tracking-wider">Componentes Listados</p>
+        <div class="flex items-baseline gap-1 mt-1">
+          <span id="metric-count" class="text-2xl font-semibold text-[#1d1d1f] tracking-tight">0</span>
+          <span class="text-xs text-[#86868b]">disciplinas</span>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
-          <i data-lucide="database" class="w-5 h-5"></i>
-        </div>
+        <p id="metric-db-label" class="text-[11px] text-[#86868b] mt-0.5">Executado em: PostgreSQL 16</p>
       </div>
 
     </section>
 
-    <!-- CARD COMPARATIVO DE BENCHMARK (Apenas visível quando db=all) -->
-    <section id="benchmark-comparison-card" class="hidden bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-amber-500/30 rounded-2xl p-5 space-y-4">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-2">
-          <i data-lucide="bar-chart-2" class="w-5 h-5 text-amber-400"></i>
-          <h2 class="text-sm font-bold text-white uppercase tracking-wider">Benchmark Comparativo Simultâneo</h2>
-        </div>
-        <span class="text-xs text-amber-400 font-medium bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
+    <!-- CARD COMPARATIVO DE BENCHMARK (Visível apenas quando db=all) -->
+    <section id="benchmark-comparison-card" class="hidden bg-white border border-[#e5e5ea] rounded-xl p-5 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-[#e5e5ea] pb-3">
+        <h2 class="text-xs font-semibold text-[#1d1d1f] uppercase tracking-wider">Benchmark Comparativo Simultâneo</h2>
+        <span class="text-[11px] font-medium text-[#86868b]">
           Ambiente Local Equivalente (1.0 CPU / 1GB RAM)
         </span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <!-- PG -->
-        <div class="bg-slate-800/80 p-4 rounded-xl border border-blue-500/30 space-y-2">
+        <!-- PostgreSQL -->
+        <div class="bg-[#f5f5f7] p-3.5 rounded-lg border border-[#e5e5ea] space-y-2">
           <div class="flex justify-between items-center">
-            <span class="text-xs font-bold text-blue-400">PostgreSQL (Relacional)</span>
-            <span id="bench-time-pg" class="text-base font-black text-white">0.00 ms</span>
+            <span class="text-xs font-medium text-[#1d1d1f]">PostgreSQL (SQL)</span>
+            <span id="bench-time-pg" class="text-xs font-semibold text-[#1d1d1f]">0.00 ms</span>
           </div>
-          <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-            <div id="bench-bar-pg" class="bg-blue-500 h-full w-0 transition-all duration-500"></div>
+          <div class="w-full bg-[#e5e5ea] h-1.5 rounded-full overflow-hidden">
+            <div id="bench-bar-pg" class="bg-[#0066cc] h-full w-0 transition-all duration-300"></div>
           </div>
-          <p class="text-[10px] text-slate-400">Query SQL com JOIN e Agrupamento</p>
         </div>
 
-        <!-- MONGO -->
-        <div class="bg-slate-800/80 p-4 rounded-xl border border-emerald-500/30 space-y-2">
+        <!-- MongoDB -->
+        <div class="bg-[#f5f5f7] p-3.5 rounded-lg border border-[#e5e5ea] space-y-2">
           <div class="flex justify-between items-center">
-            <span class="text-xs font-bold text-emerald-400">MongoDB (Documentos)</span>
-            <span id="bench-time-mongo" class="text-base font-black text-white">0.00 ms</span>
+            <span class="text-xs font-medium text-[#1d1d1f]">MongoDB (NoSQL)</span>
+            <span id="bench-time-mongo" class="text-xs font-semibold text-[#1d1d1f]">0.00 ms</span>
           </div>
-          <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-            <div id="bench-bar-mongo" class="bg-emerald-500 h-full w-0 transition-all duration-500"></div>
+          <div class="w-full bg-[#e5e5ea] h-1.5 rounded-full overflow-hidden">
+            <div id="bench-bar-mongo" class="bg-[#34c759] h-full w-0 transition-all duration-300"></div>
           </div>
-          <p class="text-[10px] text-slate-400">Busca em Documentos BSON Indexados</p>
         </div>
 
-        <!-- NEO4J -->
-        <div class="bg-slate-800/80 p-4 rounded-xl border border-purple-500/30 space-y-2">
+        <!-- Neo4j -->
+        <div class="bg-[#f5f5f7] p-3.5 rounded-lg border border-[#e5e5ea] space-y-2">
           <div class="flex justify-between items-center">
-            <span class="text-xs font-bold text-purple-400">Neo4j (Grafos)</span>
-            <span id="bench-time-neo4j" class="text-base font-black text-white">0.00 ms</span>
+            <span class="text-xs font-medium text-[#1d1d1f]">Neo4j (Grafo)</span>
+            <span id="bench-time-neo4j" class="text-xs font-semibold text-[#1d1d1f]">0.00 ms</span>
           </div>
-          <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
-            <div id="bench-bar-neo4j" class="bg-purple-500 h-full w-0 transition-all duration-500"></div>
+          <div class="w-full bg-[#e5e5ea] h-1.5 rounded-full overflow-hidden">
+            <div id="bench-bar-neo4j" class="bg-[#5856d6] h-full w-0 transition-all duration-300"></div>
           </div>
-          <p class="text-[10px] text-slate-400">Travessia Cypher de Arestas</p>
         </div>
       </div>
     </section>
@@ -285,44 +253,44 @@
     <!-- LISTA DE DISCIPLINAS POR PERÍODO -->
     <section class="space-y-6" id="grade-container">
       <div class="flex justify-center py-12">
-        <i data-lucide="loader" class="w-8 h-8 text-sky-400 animate-spin"></i>
+        <i data-lucide="loader" class="w-6 h-6 text-[#86868b] animate-spin"></i>
       </div>
     </section>
 
   </main>
 
-  <!-- MODAL DE DEPENDÊNCIAS / PRÉ-REQUISITOS / IMPACTO -->
-  <div id="dependency-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-slate-900 border border-slate-800 w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+  <!-- MODAL DE DEPENDÊNCIAS / PRÉ-REQUISITOS / IMPACTO (Estilo Apple Sheet) -->
+  <div id="dependency-modal" class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-[#e5e5ea] w-full max-w-2xl rounded-2xl shadow-xl overflow-hidden flex flex-col max-h-[85vh]">
       
       <!-- Modal Header -->
-      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-850">
+      <div class="px-6 py-4 border-b border-[#e5e5ea] flex items-center justify-between">
         <div>
           <div class="flex items-center gap-2">
-            <span id="modal-disc-codigo" class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/30">TAD0157</span>
-            <h3 id="modal-disc-nome" class="text-base font-bold text-white">Projetos Aplicados II</h3>
+            <span id="modal-disc-codigo" class="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-[#f2f2f7] text-[#1d1d1f]">TAD0157</span>
+            <h3 id="modal-disc-nome" class="text-sm font-semibold text-[#1d1d1f]">Projetos Aplicados II</h3>
           </div>
-          <p class="text-xs text-slate-400 mt-0.5">Explorador de Dependências e Travessia de Grafos</p>
+          <p class="text-[11px] text-[#86868b] mt-0.5">Explorador de Dependências e Cadeia Curricular</p>
         </div>
-        <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
-          <i data-lucide="x" class="w-5 h-5"></i>
+        <button onclick="closeModal()" class="text-[#86868b] hover:text-[#1d1d1f] p-1 rounded-md transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
       <!-- Modal Controls -->
-      <div class="px-6 py-3 bg-slate-850/50 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
-        <div class="flex items-center gap-2">
-          <button id="btn-mode-req" onclick="setModalMode('requisitos')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white transition">
-            Árvore de Pré-Requisitos (A Montante)
+      <div class="px-6 py-2.5 bg-[#fafafa] border-b border-[#e5e5ea] flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center bg-[#f2f2f7] p-0.5 rounded-lg">
+          <button id="btn-mode-req" onclick="setModalMode('requisitos')" class="px-3 py-1 rounded-md text-xs font-medium bg-white text-[#1d1d1f] shadow-sm transition">
+            Pré-Requisitos (A Montante)
           </button>
-          <button id="btn-mode-impacto" onclick="setModalMode('impacto')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white bg-slate-800 transition">
-            Análise de Impacto (A Jusante)
+          <button id="btn-mode-impacto" onclick="setModalMode('impacto')" class="px-3 py-1 rounded-md text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] transition">
+            Impacto (A Jusante)
           </button>
         </div>
 
-        <div class="flex items-center gap-2 text-xs">
-          <span class="text-slate-400">Banco:</span>
-          <select id="modal-db-select" onchange="loadModalDependencias()" class="bg-slate-800 border border-slate-700 text-xs rounded-lg px-2.5 py-1 text-slate-200">
+        <div class="flex items-center gap-1.5 text-xs text-[#86868b]">
+          <span>Banco:</span>
+          <select id="modal-db-select" onchange="loadModalDependencias()" class="bg-white border border-[#e5e5ea] text-xs rounded-md px-2 py-1 text-[#1d1d1f] focus:outline-none focus:border-[#0066cc]">
             <option value="postgres">PostgreSQL</option>
             <option value="mongo">MongoDB</option>
             <option value="neo4j">Neo4j (Grafo)</option>
@@ -332,28 +300,26 @@
       </div>
 
       <!-- Modal Body -->
-      <div class="p-6 overflow-y-auto space-y-4 flex-1 custom-scrollbar">
+      <div class="p-6 overflow-y-auto space-y-3 flex-1 custom-scrollbar">
         
         <!-- Tempo e Métricas do Modal -->
-        <div id="modal-telemetry" class="flex items-center justify-between bg-slate-800/60 p-3 rounded-xl border border-slate-700/60 text-xs">
-          <div class="flex items-center gap-2">
-            <i data-lucide="clock" class="w-4 h-4 text-sky-400"></i>
-            <span class="text-slate-300">Tempo de Execução da Árvore:</span>
-            <span id="modal-metric-time" class="font-bold text-sky-400">0.00 ms</span>
-          </div>
-          <span id="modal-metric-count" class="text-slate-400">0 dependências encontradas</span>
+        <div id="modal-telemetry" class="flex items-center justify-between bg-[#f5f5f7] px-3.5 py-2.5 rounded-lg text-xs">
+          <span class="text-[#86868b]">
+            Tempo: <strong id="modal-metric-time" class="text-[#1d1d1f] font-semibold">0.00 ms</strong>
+          </span>
+          <span id="modal-metric-count" class="text-[#86868b]">0 dependências</span>
         </div>
 
         <!-- Lista de Resultados -->
-        <div id="modal-list-container" class="space-y-2.5">
+        <div id="modal-list-container" class="space-y-2">
           <!-- Dinâmico -->
         </div>
 
       </div>
 
       <!-- Modal Footer -->
-      <div class="px-6 py-3 border-t border-slate-800 bg-slate-850 flex justify-end">
-        <button onclick="closeModal()" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white rounded-lg transition">
+      <div class="px-6 py-3 border-t border-[#e5e5ea] bg-[#fafafa] flex justify-end">
+        <button onclick="closeModal()" class="px-4 py-1.5 bg-[#1d1d1f] hover:bg-black text-xs font-medium text-white rounded-lg transition">
           Fechar
         </button>
       </div>
@@ -385,29 +351,35 @@
     function setCurso(curso) {
       state.curso = curso;
       document.getElementById('btn-curso-tads').className = curso === 'TADS' 
-        ? 'px-3 py-1 rounded-lg text-xs font-semibold bg-sky-600 text-white shadow-sm transition'
-        : 'px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition';
+        ? 'px-3.5 py-1 rounded-md text-xs font-medium bg-white text-[#1d1d1f] shadow-sm transition'
+        : 'px-3.5 py-1 rounded-md text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] transition';
       document.getElementById('btn-curso-bti').className = curso === 'BTI'
-        ? 'px-3 py-1 rounded-lg text-xs font-semibold bg-sky-600 text-white shadow-sm transition'
-        : 'px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition';
+        ? 'px-3.5 py-1 rounded-md text-xs font-medium bg-white text-[#1d1d1f] shadow-sm transition'
+        : 'px-3.5 py-1 rounded-md text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] transition';
       fetchGrade();
     }
 
     function setDb(db) {
       state.db = db;
       document.querySelectorAll('.db-choice-btn').forEach(btn => {
-        btn.classList.remove('ring-2', 'ring-sky-500', 'bg-slate-700/80');
+        btn.classList.remove('border-[#0066cc]', 'bg-[#f5f9ff]');
+        btn.classList.add('border-[#e5e5ea]', 'bg-white');
         const icon = btn.querySelector('.checkmark');
-        if (icon) icon.classList.remove('opacity-100');
-        if (icon) icon.classList.add('opacity-0');
+        if (icon) {
+          icon.classList.remove('opacity-100');
+          icon.classList.add('opacity-0');
+        }
       });
 
       const activeBtn = document.getElementById(`db-btn-${db}`);
       if (activeBtn) {
-        activeBtn.classList.add('ring-2', 'ring-sky-500', 'bg-slate-700/80');
+        activeBtn.classList.remove('border-[#e5e5ea]', 'bg-white');
+        activeBtn.classList.add('border-[#0066cc]', 'bg-[#f5f9ff]');
         const icon = activeBtn.querySelector('.checkmark');
-        if (icon) icon.classList.remove('opacity-0');
-        if (icon) icon.classList.add('opacity-100');
+        if (icon) {
+          icon.classList.remove('opacity-0');
+          icon.classList.add('opacity-100');
+        }
       }
 
       fetchGrade();
@@ -417,9 +389,9 @@
       state.periodo = p;
       document.querySelectorAll('.period-btn').forEach(btn => {
         if (btn.getAttribute('data-period') === p) {
-          btn.className = 'period-btn px-3 py-2 rounded-xl text-xs font-semibold bg-sky-600 text-white whitespace-nowrap transition';
+          btn.className = 'period-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-[#1d1d1f] text-white whitespace-nowrap transition';
         } else {
-          btn.className = 'period-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 whitespace-nowrap transition';
+          btn.className = 'period-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f2f2f7] text-[#1d1d1f] hover:bg-[#e5e5ea] whitespace-nowrap transition';
         }
       });
       fetchGrade();
@@ -438,9 +410,9 @@
       const container = document.getElementById('grade-container');
       container.innerHTML = `
         <div class="flex justify-center py-16">
-          <div class="flex flex-col items-center gap-3">
-            <i data-lucide="loader" class="w-8 h-8 text-sky-400 animate-spin"></i>
-            <span class="text-xs text-slate-400">Consultando ${state.db.toUpperCase()}...</span>
+          <div class="flex flex-col items-center gap-2">
+            <i data-lucide="loader" class="w-6 h-6 text-[#86868b] animate-spin"></i>
+            <span class="text-xs text-[#86868b]">Consultando ${state.db.toUpperCase()}...</span>
           </div>
         </div>
       `;
@@ -463,7 +435,6 @@
           ).toFixed(2);
           document.getElementById('metric-db-label').innerText = 'Média dos 3 Bancos';
           
-          // Exibir card comparativo
           document.getElementById('benchmark-comparison-card').classList.remove('hidden');
           renderBenchmarkComparison(data.tempos);
         } else {
@@ -481,7 +452,7 @@
       } catch (err) {
         console.error('Erro na requisição:', err);
         container.innerHTML = `
-          <div class="bg-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-xl text-center text-sm">
+          <div class="bg-white border border-[#ff3b30] text-[#ff3b30] p-4 rounded-xl text-center text-xs">
             Erro ao consultar o banco de dados: ${err.message}
           </div>
         `;
@@ -504,13 +475,11 @@
 
       if (!items || items.length === 0) {
         container.innerHTML = `
-          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-12 text-center">
-            <i data-lucide="inbox" class="w-12 h-12 text-slate-600 mx-auto mb-3"></i>
-            <h3 class="text-base font-bold text-slate-300">Nenhuma disciplina encontrada</h3>
-            <p class="text-xs text-slate-500 mt-1">Tente ajustar o termo de pesquisa ou selecionar outro período.</p>
+          <div class="bg-white border border-[#e5e5ea] rounded-xl p-12 text-center">
+            <h3 class="text-sm font-semibold text-[#1d1d1f]">Nenhuma disciplina encontrada</h3>
+            <p class="text-xs text-[#86868b] mt-1">Ajuste o termo de pesquisa ou período selecionado.</p>
           </div>
         `;
-        lucide.createIcons();
         return;
       }
 
@@ -531,20 +500,19 @@
 
         html += `
           <div class="space-y-3">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-              <div class="flex items-center space-x-2.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
-                <h2 class="text-sm font-bold text-white tracking-wide uppercase">
-                  ${p > 0 ? `${p}º Período Ideal` : 'Componentes Optativos / Complementares'}
+            <div class="flex items-center justify-between border-b border-[#e5e5ea] pb-2">
+              <div class="flex items-center gap-2">
+                <h2 class="text-xs font-semibold text-[#1d1d1f] tracking-wide uppercase">
+                  ${p > 0 ? `${p}º Semestre` : 'Componentes Optativos / Complementares'}
                 </h2>
-                <span class="text-[11px] text-slate-400 font-medium">(${disciplinas.length} matérias)</span>
+                <span class="text-[11px] text-[#86868b]">(${disciplinas.length} matérias)</span>
               </div>
-              <span class="text-xs font-semibold text-slate-400 bg-slate-800 px-2.5 py-0.5 rounded-md border border-slate-700">
-                ${totalCH}h totais
+              <span class="text-[11px] text-[#86868b] bg-[#f2f2f7] px-2 py-0.5 rounded">
+                ${totalCH}h
               </span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
               ${disciplinas.map(d => renderCardDisciplina(d)).join('')}
             </div>
           </div>
@@ -559,55 +527,51 @@
       const temReqs = d.requisitos && d.requisitos.length > 0;
 
       return `
-        <div class="bg-slate-900/80 border border-slate-800/80 hover:border-slate-700 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg hover:shadow-slate-950/40 transition group">
+        <div class="bg-white border border-[#e5e5ea] hover:border-[#b0b0b5] rounded-xl p-4 flex flex-col justify-between transition">
           <div>
             <div class="flex items-start justify-between gap-2 mb-2">
-              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
+              <span class="text-[11px] font-mono font-medium text-[#1d1d1f] bg-[#f2f2f7] px-2 py-0.5 rounded">
                 ${d.codigo}
               </span>
-              <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded ${
-                d.tipo_vinculo === 'OBRIGATORIA' ? 'bg-slate-800 text-slate-300' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-              }">
+              <span class="text-[10px] font-medium text-[#86868b] uppercase">
                 ${d.tipo_vinculo}
               </span>
             </div>
 
-            <h3 class="text-sm font-bold text-white group-hover:text-sky-300 transition line-clamp-2">
+            <h3 class="text-xs font-semibold text-[#1d1d1f] line-clamp-2 leading-snug">
               ${d.nome}
             </h3>
 
-            <div class="flex items-center gap-3 text-xs text-slate-400 mt-2">
-              <span><strong>${d.ch}h</strong> (${d.creditos} cr)</span>
+            <div class="flex items-center gap-2 text-[11px] text-[#86868b] mt-1.5">
+              <span>${d.ch}h (${d.creditos} cr)</span>
               <span>•</span>
-              <span>Dep: ${d.departamento || 'EAJ'}</span>
+              <span>${d.departamento || 'EAJ'}</span>
             </div>
 
-            <p class="text-xs text-slate-400/90 mt-2 line-clamp-3 leading-relaxed">
+            <p class="text-[11px] text-[#86868b] mt-2 line-clamp-3 leading-relaxed">
               ${d.ementa || 'Sem ementa detalhada cadastrada.'}
             </p>
           </div>
 
-          <div class="mt-4 pt-3 border-t border-slate-800/60 flex flex-col gap-2">
+          <div class="mt-4 pt-3 border-t border-[#f2f2f7] flex flex-col gap-2">
             
             <!-- Badges de Pré-requisitos -->
-            <div class="flex flex-wrap items-center gap-1.5 min-h-[22px]">
-              <span class="text-[10px] text-slate-500 font-semibold mr-1">Requisitos:</span>
+            <div class="flex flex-wrap items-center gap-1 min-h-[20px]">
+              <span class="text-[10px] text-[#86868b] mr-1">Requisitos:</span>
               ${
                 temReqs 
                   ? d.requisitos.map(r => `
-                      <button onclick="openModalForReq('${r.disciplina_codigo}')" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/80 flex items-center gap-1 transition">
-                        <span>${r.disciplina_codigo}</span>
-                        <span class="text-[9px] font-bold ${r.tipo === 'E' ? 'text-sky-400' : 'text-amber-400'}">(${r.tipo})</span>
+                      <button onclick="openModalForReq('${r.disciplina_codigo}')" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#f2f2f7] hover:bg-[#e5e5ea] text-[#1d1d1f] transition">
+                        ${r.disciplina_codigo} (${r.tipo})
                       </button>
                     `).join('')
-                  : '<span class="text-[10px] text-slate-500 italic">Nenhum</span>'
+                  : '<span class="text-[10px] text-[#86868b]">Nenhum</span>'
               }
             </div>
 
-            <!-- Botão de Navegação Completa da Árvore -->
-            <button onclick="openModal('${d.codigo}', '${d.nome.replace(/'/g, "\\'")}')" class="w-full mt-1 flex items-center justify-center gap-1.5 py-1.5 px-3 bg-slate-800/80 hover:bg-sky-600/20 hover:border-sky-500/30 text-xs font-semibold text-sky-400 rounded-lg border border-slate-700/60 transition">
-              <i data-lucide="git-fork" class="w-3.5 h-3.5"></i>
-              <span>Ver Cadeia de Dependências</span>
+            <!-- Botão de Dependências -->
+            <button onclick="openModal('${d.codigo}', '${d.nome.replace(/'/g, "\\'")}')" class="w-full mt-1 py-1.5 px-3 bg-[#f2f2f7] hover:bg-[#e5e5ea] text-xs font-medium text-[#1d1d1f] rounded-lg transition text-center">
+              Cadeia de Dependências
             </button>
 
           </div>
@@ -635,11 +599,11 @@
     function setModalMode(tipo) {
       state.modalTipo = tipo;
       document.getElementById('btn-mode-req').className = tipo === 'requisitos'
-        ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white transition'
-        : 'px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white bg-slate-800 transition';
+        ? 'px-3 py-1 rounded-md text-xs font-medium bg-white text-[#1d1d1f] shadow-sm transition'
+        : 'px-3 py-1 rounded-md text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] transition';
       document.getElementById('btn-mode-impacto').className = tipo === 'impacto'
-        ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white transition'
-        : 'px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white bg-slate-800 transition';
+        ? 'px-3 py-1 rounded-md text-xs font-medium bg-white text-[#1d1d1f] shadow-sm transition'
+        : 'px-3 py-1 rounded-md text-xs font-medium text-[#86868b] hover:text-[#1d1d1f] transition';
       loadModalDependencias();
     }
 
@@ -651,7 +615,7 @@
 
       list.innerHTML = `
         <div class="flex justify-center py-8">
-          <i data-lucide="loader" class="w-6 h-6 text-sky-400 animate-spin"></i>
+          <i data-lucide="loader" class="w-5 h-5 text-[#86868b] animate-spin"></i>
         </div>
       `;
       lucide.createIcons();
@@ -668,43 +632,42 @@
           ? ((data.tempos.postgres_ms + data.tempos.mongo_ms + data.tempos.neo4j_ms) / 3).toFixed(2)
           : (data.db_time_ms || 0).toFixed(2);
 
-        document.getElementById('modal-metric-time').innerText = `${timeToShow} ms (Total HTTP: ${totalTime.toFixed(1)} ms)`;
+        document.getElementById('modal-metric-time').innerText = `${timeToShow} ms`;
 
         const items = data.dados || data.data || [];
-        document.getElementById('modal-metric-count').innerText = `${items.length} componentes encontrados`;
+        document.getElementById('modal-metric-count').innerText = `${items.length} componentes`;
 
         if (items.length === 0) {
           list.innerHTML = `
-            <div class="text-center py-8 text-slate-500 text-xs italic">
-              ${state.modalTipo === 'requisitos' ? 'Esta disciplina não possui pré-requisitos cadastrados.' : 'Nenhuma disciplina depende desta matéria diretamente.'}
+            <div class="text-center py-6 text-[#86868b] text-xs">
+              ${state.modalTipo === 'requisitos' ? 'Nenhum pré-requisito registrado.' : 'Nenhuma disciplina depende desta matéria.'}
             </div>
           `;
           return;
         }
 
         list.innerHTML = items.map(item => `
-          <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-full bg-slate-700 text-sky-400 text-xs font-bold flex items-center justify-center">
+          <div class="bg-[#f5f5f7] p-3 rounded-lg border border-[#e5e5ea] flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full bg-white text-[#1d1d1f] text-[10px] font-semibold flex items-center justify-center border border-[#e5e5ea]">
                 ${item.nivel || 1}
               </span>
               <div>
                 <div class="flex items-center gap-2">
-                  <span class="text-xs font-mono font-bold text-white">${item.codigo}</span>
-                  ${item.operador_logico ? `<span class="text-[9px] px-1.5 py-0.2 rounded bg-slate-700 font-bold ${item.operador_logico === 'E' ? 'text-sky-400' : 'text-amber-400'}">${item.operador_logico}</span>` : ''}
+                  <span class="text-xs font-mono font-semibold text-[#1d1d1f]">${item.codigo}</span>
+                  ${item.operador_logico ? `<span class="text-[9px] px-1 py-0.2 rounded bg-white font-medium text-[#86868b] border border-[#e5e5ea]">${item.operador_logico}</span>` : ''}
                 </div>
-                <p class="text-xs text-slate-300 font-medium">${item.nome || item.codigo}</p>
+                <p class="text-xs text-[#1d1d1f]">${item.nome || item.codigo}</p>
               </div>
             </div>
-            <span class="text-xs text-slate-400">${item.ch ? `${item.ch}h` : ''}</span>
+            <span class="text-xs text-[#86868b]">${item.ch ? `${item.ch}h` : ''}</span>
           </div>
         `).join('');
 
       } catch (err) {
-        list.innerHTML = `<div class="text-red-400 text-xs">Erro ao consultar dependências: ${err.message}</div>`;
+        list.innerHTML = `<div class="text-[#ff3b30] text-xs">Erro ao consultar dependências: ${err.message}</div>`;
       }
     }
   </script>
 </body>
 </html>
-

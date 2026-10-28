@@ -7,5 +7,10 @@
     "neo4j-driver": "^6.2.0",
     "pg": "^8.23.1"
   },
+  "scripts": {
+    "start": "node backend/server.js",
+    "seed": "node scripts/seed.js",
+    "benchmark": "node scripts/test_queries.js"
+  },
   "type": "module"
 }
