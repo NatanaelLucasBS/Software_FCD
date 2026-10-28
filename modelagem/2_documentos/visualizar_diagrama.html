@@ -3,52 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modelo Lógico Documentos — PolyGrade (TADS 2019)</title>
+  <title>Modelo Lógico Documentos — PolyGrade</title>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", sans-serif;
+      background: #f5f5f7;
+      color: #1d1d1f;
       margin: 0;
-      padding: 20px;
+      padding: 32px 20px;
+      -webkit-font-smoothing: antialiased;
     }
     .header {
       max-width: 1200px;
-      margin: 0 auto 20px auto;
-      padding: 20px;
-      background: #1e293b;
+      margin: 0 auto 24px auto;
+      padding: 24px 28px;
+      background: #ffffff;
       border-radius: 12px;
-      border: 1px solid #334155;
+      border: 1px solid #e5e5ea;
     }
     h1 {
-      margin: 0 0 10px 0;
-      color: #38bdf8;
-      font-size: 24px;
+      margin: 0 0 8px 0;
+      color: #1d1d1f;
+      font-size: 20px;
+      font-weight: 600;
     }
     p {
-      margin: 5px 0;
-      color: #94a3b8;
+      margin: 0;
+      color: #86868b;
+      font-size: 13px;
       line-height: 1.5;
     }
-    .badge {
+    .tag {
       display: inline-block;
-      padding: 4px 10px;
-      background: #047857;
-      color: #d1fae5;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-right: 8px;
+      padding: 3px 8px;
+      background: #f2f2f7;
+      color: #1d1d1f;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 12px;
     }
     .diagram-container {
       max-width: 1200px;
       margin: 0 auto;
-      background: #1e293b;
-      padding: 30px;
+      background: #ffffff;
+      padding: 28px;
       border-radius: 12px;
-      border: 1px solid #334155;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      border: 1px solid #e5e5ea;
       overflow-x: auto;
     }
     .mermaid {
@@ -59,12 +61,9 @@
 </head>
 <body>
   <div class="header">
-    <span class="badge">PARADIGMA NÃO RELACIONAL DOCUMENTOS</span>
-    <span class="badge" style="background: #0284c7;">LEITURA AGREGADA OTIMIZADA</span>
-    <span class="badge" style="background: #15803d;">MONGODB 7.0</span>
-    <h1>Modelo Lógico 2: Abordagem Não Relacional em Documentos (JSON / BSON)</h1>
-    <p><strong>Domínio:</strong> Estrutura Curricular TADS 2019 — UFRN.</p>
-    <p>Modelagem que combina agregação embutida (para entrega atômica da grade curricular por semestre) e catálogo referenciado com array de dependências para análise recursiva via <code>$graphLookup</code>.</p>
+    <span class="tag">MongoDB 7.0 • Read-Optimized</span>
+    <h1>Modelo Lógico em Documentos</h1>
+    <p>Estrutura mista: a coleção <code>cursos</code> agrupa a grade completa por semestres (1 leitura atômica sem <code>JOIN</code>) e a coleção <code>disciplinas</code> gerencia o catálogo e os arrays de dependências para análise via <code>$graphLookup</code>.</p>
   </div>
 
   <div class="diagram-container">
@@ -75,15 +74,8 @@ classDiagram
         +String codigo "01A"
         +String sigla "TADS"
         +String nome "Tecnologia em Análise e Desenvolvimento de Sistemas"
-        +String nivel "Graduação - Tecnológico"
-        +String unidade "EAJ - UFRN"
         +Integer ano_versao 2019
         +Integer ch_total_minima 2100
-        +Integer ch_obrigatoria 1680
-        +Integer ch_optativa 240
-        +Integer ch_complementar 180
-        +Integer duracao_semestres 6
-        +Boolean ativa true
         +PeriodoGrade[] grade
     }
 
@@ -105,9 +97,6 @@ classDiagram
         +String codigo "TAD0009"
         +String nome "Programação Orientada a Objetos"
         +Integer ch 60
-        +Integer creditos 4
-        +String departamento "EAJ"
-        +String ementa "Paradigma orientado a objetos..."
         +CursoVinculo[] cursos_vinculados
         +RequisitoItem[] requisitos
     }
@@ -116,7 +105,6 @@ classDiagram
         +String curso_sigla "TADS"
         +Integer ano_matriz 2019
         +Integer periodo_ideal 2
-        +String tipo_vinculo "OBRIGATORIA"
     }
 
     class RequisitoItem {
@@ -125,19 +113,19 @@ classDiagram
         +String tipo "E | OU"
     }
 
-    CursoDocument *-- PeriodoGrade : contém (embedded)
-    PeriodoGrade *-- DisciplinaEmbutida : contém (embedded)
-    DisciplinaDocument *-- CursoVinculo : contém (embedded)
-    DisciplinaDocument *-- RequisitoItem : contém (embedded)
+    CursoDocument *-- PeriodoGrade
+    PeriodoGrade *-- DisciplinaEmbutida
+    DisciplinaDocument *-- CursoVinculo
+    DisciplinaDocument *-- RequisitoItem
     </pre>
   </div>
 
   <script>
     mermaid.initialize({
       startOnLoad: true,
-      theme: 'dark'
+      theme: 'neutral',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Inter", sans-serif'
     });
   </script>
 </body>
 </html>
-
