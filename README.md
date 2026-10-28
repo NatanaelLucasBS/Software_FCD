@@ -237,11 +237,9 @@ Roteiro organizado para que todos os membros da equipe participem da gravação:
 
 | Integrante | Papel | Tempo | Tópicos Centrais da Fala |
 |---|---|---|---|
-| **Membro 1** | Abertura e Contextualização | 1.5 min | Contextualiza o TADS 2019 da UFRN, explica a motivação da Persistência Poliglota e a arquitetura geral do sistema. |
-| **Membro 2** | Engenheiro de Modelagem Lógica | 2.5 min | Abre o visualizador [`modelagem/visualizador_completo.html`](modelagem/visualizador_completo.html) e explica os 3 modelos lógicos (Relacional 3FN, Documentos com agregação embutida e Grafo LPG). |
-| **Membro 3** | Desenvolvedor Web / UI | 2.5 min | Compartilha a tela em `http://localhost:3000`, demonstra a busca textual, os filtros por período, o chaveamento entre os bancos e os cartões de disciplina. |
-| **Membro 4** | Benchmark e Escolha Final | 2.5 min | Mostra o botão "Comparar Todos", explica por que os bancos rodam localmente no Docker (controle de latência de rede) e defende tecnicamente a escolha do Neo4j. |
-| **Todos** | Genericidade e Encerramento | 1.0 min | Demonstra a troca para o curso do BTI na tela, mostra o endpoint de cadastro dinâmico e encerra a gravação. |
+| **Pedro Davi** | Abertura, Contexto & Modelagens Lógicas | ~3.0 min | Contextualiza a matriz TADS 2019 da UFRN e a motivação da persistência poliglota. Abre o visualizador [`modelagem/visualizador_completo.html`](modelagem/visualizador_completo.html) e explica os 3 modelos conceituais (Relacional 3FN, Coleções em Documentos e Grafo LPG). |
+| **Natanael Lucas** | Demonstração do Sistema Web & UI | ~3.0 min | Compartilha a tela em `http://localhost:3000`. Demonstra a busca textual, filtros por período, visualização de cartões, o modal de cadeia recursiva de pré-requisitos e a alternância dinâmica entre os 3 bancos de dados. |
+| **Cleiton Mizael** | Benchmark Local, Escolha Final & Genericidade | ~3.0 min | Executa a query comparativa simultânea ("⚡ Comparar Todos"), explica o rigor científico do benchmark local com containers idênticos (zero viés de rede), defende formalmente a escolha do **Neo4j** (DAG e *Index-Free Adjacency*) e demonstra a genericidade carregando a matriz do BTI. |
 
 ---
 
