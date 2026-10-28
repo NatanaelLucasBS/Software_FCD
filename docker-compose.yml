@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: polygrade_postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: polygrade
+      POSTGRES_PASSWORD: polygrade_pwd
+      POSTGRES_DB: curriculo_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+
+  mongodb:
+    image: mongo:7.0
+    container_name: polygrade_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: polygrade
+      MONGO_INITDB_ROOT_PASSWORD: polygrade_pwd
+      MONGO_INITDB_DATABASE: curriculo_db
+    volumes:
+      - mongodata:/data/db
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+
+  neo4j:
+    image: neo4j:5-community
+    container_name: polygrade_neo4j
+    restart: unless-stopped
+    ports:
+      - "7474:7474" # HTTP UI
+      - "7687:7687" # Bolt Protocol
+    environment:
+      NEO4J_AUTH: neo4j/polygrade_pwd
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_dbms_security_procedures_unrestricted: apoc.*
+    volumes:
+      - neo4jdata:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+
+volumes:
+  pgdata:
+  mongodata:
+  neo4jdata:
+

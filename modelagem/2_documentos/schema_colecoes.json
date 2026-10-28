@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Esquemas de Validação MongoDB (PolyGrade)",
+  "colecoes": {
+    "cursos": {
+      "validator": {
+        "$jsonSchema": {
+          "bsonType": "object",
+          "required": ["codigo", "sigla", "nome", "ano_versao", "grade"],
+          "properties": {
+            "_id": { "bsonType": "string" },
+            "codigo": { "bsonType": "string" },
+            "sigla": { "bsonType": "string" },
+            "nome": { "bsonType": "string" },
+            "nivel": { "bsonType": "string" },
+            "unidade": { "bsonType": "string" },
+            "ano_versao": { "bsonType": "int" },
+            "ch_total_minima": { "bsonType": "int" },
+            "duracao_semestres": { "bsonType": "int" },
+            "ativa": { "bsonType": "bool" },
+            "grade": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "object",
+                "required": ["periodo", "disciplinas"],
+                "properties": {
+                  "periodo": { "bsonType": "int" },
+                  "disciplinas": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "object",
+                      "required": ["codigo", "nome", "ch", "creditos"],
+                      "properties": {
+                        "codigo": { "bsonType": "string" },
+                        "nome": { "bsonType": "string" },
+                        "ch": { "bsonType": "int" },
+                        "creditos": { "bsonType": "int" },
+                        "tipo_vinculo": { "bsonType": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "disciplinas": {
+      "validator": {
+        "$jsonSchema": {
+          "bsonType": "object",
+          "required": ["codigo", "nome", "ch", "creditos", "departamento"],
+          "properties": {
+            "_id": { "bsonType": "string" },
+            "codigo": { "bsonType": "string" },
+            "nome": { "bsonType": "string" },
+            "ch": { "bsonType": "int" },
+            "creditos": { "bsonType": "int" },
+            "departamento": { "bsonType": "string" },
+            "ementa": { "bsonType": "string" },
+            "cursos_vinculados": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "object",
+                "required": ["curso_sigla", "ano_matriz", "periodo_ideal"],
+                "properties": {
+                  "curso_sigla": { "bsonType": "string" },
+                  "ano_matriz": { "bsonType": "int" },
+                  "periodo_ideal": { "bsonType": "int" },
+                  "tipo_vinculo": { "bsonType": "string" }
+                }
+              }
+            },
+            "requisitos": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "object",
+                "required": ["disciplina_codigo", "tipo"],
+                "properties": {
+                  "disciplina_codigo": { "bsonType": "string" },
+                  "nome": { "bsonType": "string" },
+                  "tipo": { "enum": ["E", "OU"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

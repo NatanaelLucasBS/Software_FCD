@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelo Lógico Grafo — PolyGrade (TADS 2019)</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 20px;
+    }
+    .header {
+      max-width: 1200px;
+      margin: 0 auto 20px auto;
+      padding: 20px;
+      background: #1e293b;
+      border-radius: 12px;
+      border: 1px solid #334155;
+    }
+    h1 {
+      margin: 0 0 10px 0;
+      color: #38bdf8;
+      font-size: 24px;
+    }
+    p {
+      margin: 5px 0;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #7c3aed;
+      color: #ede9fe;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    .diagram-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      overflow-x: auto;
+    }
+    .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="badge">PARADIGMA NÃO RELACIONAL EM GRAFOS</span>
+    <span class="badge" style="background: #2563eb;">INDEX-FREE ADJACENCY</span>
+    <span class="badge" style="background: #059669;">NEO4J 5 (LPG)</span>
+    <h1>Modelo Lógico 3: Abordagem Não Relacional em Grafos (Labeled Property Graph)</h1>
+    <p><strong>Domínio:</strong> Estrutura Curricular TADS 2019 — UFRN.</p>
+    <p>Modelagem em grafo rotulado com propriedades onde nós representam Cursos, Estruturas e Disciplinas, e as arestas direcionadas tipadas mapeiam tanto o pertencimento curricular quanto as dependências de pré-requisitos (E / OU).</p>
+  </div>
+
+  <div class="diagram-container">
+    <pre class="mermaid">
+flowchart TD
+    %% Nós principais
+    C["(:Curso {codigo: '01A', sigla: 'TADS'})"]
+    E["(:Estrutura {codigo: 'TADS2019', ano: 2019, ch_min: 2100})"]
+
+    %% Disciplinas do TADS 2019
+    D0102["(:Disciplina {codigo: 'TAD0102', nome: 'Algoritmos e Prog.', ch: 90})"]
+    D0009["(:Disciplina {codigo: 'TAD0009', nome: 'Prog. Orientada a Objetos', ch: 60})"]
+    D0019["(:Disciplina {codigo: 'TAD0019', nome: 'Programação Web', ch: 60})"]
+    D0027["(:Disciplina {codigo: 'TAD0027', nome: 'Prog. Dispositivos Móveis', ch: 90})"]
+    D0028["(:Disciplina {codigo: 'TAD0028', nome: 'Planej. e Gerência Projetos', ch: 45})"]
+    D0029["(:Disciplina {codigo: 'TAD0029', nome: 'Arquitetura de Software', ch: 45})"]
+    D0156["(:Disciplina {codigo: 'TAD0156', nome: 'Projetos Aplicados I', ch: 60})"]
+    D0157["(:Disciplina {codigo: 'TAD0157', nome: 'Projetos Aplicados II', ch: 60})"]
+
+    %% Relações de Pertencimento Curricular
+    C -->|POSSUI_ESTRUTURA| E
+    E -->|CONTEM {periodo: 1, tipo: 'OBRIGATORIA'}| D0102
+    E -->|CONTEM {periodo: 2, tipo: 'OBRIGATORIA'}| D0009
+    E -->|CONTEM {periodo: 3, tipo: 'OBRIGATORIA'}| D0019
+    E -->|CONTEM {periodo: 4, tipo: 'OBRIGATORIA'}| D0027
+    E -->|CONTEM {periodo: 4, tipo: 'OBRIGATORIA'}| D0028
+    E -->|CONTEM {periodo: 4, tipo: 'OBRIGATORIA'}| D0029
+    E -->|CONTEM {periodo: 5, tipo: 'OBRIGATORIA'}| D0156
+    E -->|CONTEM {periodo: 6, tipo: 'OBRIGATORIA'}| D0157
+
+    %% Relações de Pré-Requisitos (DAG - Directed Acyclic Graph)
+    D0009 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0102
+    D0019 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0009
+    D0027 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0019
+    D0028 -.->|EXIGE_PRE_REQUISITO {tipo: 'OU'}| D0009
+    D0029 -.->|EXIGE_PRE_REQUISITO {tipo: 'OU'}| D0009
+    D0156 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0102
+    D0156 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0029
+    D0157 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0156
+    D0157 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0028
+    </pre>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark'
+    });
+  </script>
+</body>
+</html>
+

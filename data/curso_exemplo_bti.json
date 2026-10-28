@@ -1,0 +1,86 @@
+{
+  "curso": {
+    "codigo": "02B",
+    "sigla": "BTI",
+    "nome": "Bacharelado em Tecnologia da Informação",
+    "nivel": "Graduação - Bacharelado",
+    "unidade": "Instituto Metrópole Digital (IMD) - UFRN",
+    "modalidade": "Presencial"
+  },
+  "estrutura": {
+    "ano_versao": 2020,
+    "codigo_matriz": "BTI2020",
+    "ch_total_minima": 2800,
+    "ch_obrigatoria": 1920,
+    "ch_optativa": 680,
+    "ch_complementar": 200,
+    "duracao_padrao_semestres": 8,
+    "ativa": true
+  },
+  "componentes": [
+    {
+      "codigo": "IMD0011",
+      "nome": "Introdução às Técnicas de Programação",
+      "ch": 90,
+      "creditos": 6,
+      "periodo_ideal": 1,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "IMD",
+      "ementa": "Construção de algoritmos estruturados, tipos de dados primitivos, estruturas condicionais e de repetição, vetores e matrizes em C++.",
+      "requisitos": []
+    },
+    {
+      "codigo": "IMD0012",
+      "nome": "Estruturas de Dados Básicas I",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 2,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "IMD",
+      "ementa": "Listas encadeadas, pilhas, filas, complexidade de algoritmos e recursão.",
+      "requisitos": [
+        { "disciplina_codigo": "IMD0011", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "IMD0029",
+      "nome": "Estrutura de Dados Básicas II",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 3,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "IMD",
+      "ementa": "Árvores binárias de busca, árvores AVL, tabelas hash e grafos.",
+      "requisitos": [
+        { "disciplina_codigo": "IMD0012", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "IMD0030",
+      "nome": "Linguagem de Programação II",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 2,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "IMD",
+      "ementa": "Programação orientada a objetos com Java, classes abstratas, polimorfismo e coleções.",
+      "requisitos": [
+        { "disciplina_codigo": "IMD0011", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "IMD0040",
+      "nome": "Sistemas de Banco de Dados",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 3,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "IMD",
+      "ementa": "Modelagem relacional, álgebra relacional e consultas SQL complexas.",
+      "requisitos": [
+        { "disciplina_codigo": "IMD0011", "tipo": "E" }
+      ]
+    }
+  ]
+}
+

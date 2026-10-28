@@ -1,0 +1,471 @@
+{
+  "curso": {
+    "codigo": "01A",
+    "sigla": "TADS",
+    "nome": "Tecnologia em Análise e Desenvolvimento de Sistemas",
+    "nivel": "Graduação - Tecnológico",
+    "unidade": "Escola Agrícola de Jundiaí (EAJ) - UFRN",
+    "modalidade": "Presencial"
+  },
+  "estrutura": {
+    "ano_versao": 2019,
+    "codigo_matriz": "TADS2019",
+    "ch_total_minima": 2100,
+    "ch_obrigatoria": 1680,
+    "ch_optativa": 240,
+    "ch_complementar": 180,
+    "duracao_padrao_semestres": 6,
+    "ativa": true
+  },
+  "componentes": [
+    {
+      "codigo": "TAD0001",
+      "nome": "Fundamentos da Computação",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 1,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Histórico e evolução da computação. Representação e manipulação de dados numéricos e alfanuméricos. Princípios de arquitetura e organização de computadores. Introdução a sistemas operacionais e redes de computadores. Tendências tecnológicas.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0102",
+      "nome": "Algoritmos e Programação",
+      "ch": 90,
+      "creditos": 6,
+      "periodo_ideal": 1,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Lógica de programação. Conceito de algoritmo. Estrutura sequencial, condicional e de repetição. Tipos de dados simples e estruturados (vetores e matrizes). Modularização: funções e procedimentos. Ponteiros e alocação dinâmica básica.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0201",
+      "nome": "Raciocínio Lógico",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 1,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Lógica proposicional: conectivos, tabelas-verdade, tautologias e contradições. Lógica de predicados: quantificadores. Métodos de dedução e inferência lógica. Resolução de problemas analíticos aplicados à computação.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0105",
+      "nome": "Matemática Aplicada I",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 1,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Teoria dos conjuntos e relações. Funções e gráficos. Matrizes, determinantes e sistemas lineares. Aplicações práticas na ciência da computação.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0006",
+      "nome": "Sistemas Operacionais",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 1,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Estrutura e componentes de sistemas operacionais. Gerência de processos e threads. Escalonamento de CPU. Gerência de memória e memória virtual. Sistemas de arquivos e segurança.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0202",
+      "nome": "Leitura e Produção de Textos",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 1,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Comunicação oral e escrita. Gêneros textuais acadêmicos e técnicos. Redação de relatórios, documentação técnica e artigos científicos. Coesão, coerência e adequação linguística.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0012",
+      "nome": "Processo de Desenvolvimento de Software",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 2,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Ciclo de vida de software. Modelos tradicionais (Cascata, Prototipação, Espiral) e metodologias ágeis (Scrum, Kanban, XP). Engenharia de requisitos, levantamento, análise e especificação de software.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0009",
+      "nome": "Programação Orientada a Objetos",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 2,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Paradigma orientado a objetos: classes, objetos, atributos e métodos. Encapsulamento, herança, polimorfismo e interfaces. Tratamento de exceções. Coleções de dados.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0102", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0103",
+      "nome": "Banco de Dados",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 2,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Conceitos de sistemas de banco de dados. Modelo relacional e álgebra relacional. Normalização de dados (1FN, 2FN, 3FN). Linguagem SQL: DDL, DML e DQL.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0013",
+      "nome": "Matemática Aplicada II",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 2,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Cálculo diferencial e integral aplicado. Limites, derivadas e taxas de variação. Integrais e aplicações em modelagem computacional. Análise combinatória básica.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0105", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0111",
+      "nome": "Programação Visual e Autoria Web",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 2,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Estruturação de documentos Web (HTML5). Estilização e layout responsivo (CSS3, Flexbox, Grid). Interatividade no cliente com JavaScript moderno. Usabilidade e acessibilidade web.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0114",
+      "nome": "Redes de Computadores",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 2,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Arquitetura de redes em camadas: modelo OSI e TCP/IP. Protocolos de aplicação (HTTP, DNS, DHCP). Camada de transporte (TCP, UDP). Endereçamento IP e roteamento. Segurança em redes locais.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0006", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0016",
+      "nome": "Vertentes Produtivas nas Ciências Agrárias",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 2,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Cadeias produtivas do setor agropecuário e agroindustrial do semiárido. Inovação tecnológica e aplicação de soluções de TI nas ciências agrárias e sustentabilidade regional.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0025",
+      "nome": "Inteligência Computacional",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 3,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Fundamentos de inteligência artificial. Algoritmos de busca em grafos. Algoritmos genéticos e computação evolucionária. Redes neurais artificiais e introdução a aprendizado de máquina.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0102", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0019",
+      "nome": "Programação Web",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 3,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Desenvolvimento web full-stack. Arquitetura cliente-servidor. Desenvolvimento backend (REST APIs, sessões, autenticação). Integração de aplicações web com bancos de dados relacionais e NoSQL.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0009", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0020",
+      "nome": "Estruturas de Dados",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 3,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Complexidade de algoritmos (notação assintótica O). Listas lineares, pilhas e filas. Árvores binárias de busca e balanceamento. Algoritmos de ordenação e busca.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0102", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0123",
+      "nome": "Sistemas Digitais",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 3,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Álgebra booleana e portas lógicas. Circuitos combinacionais e sequenciais. Flip-flops, registradores e contadores. Fundamentos de arquitetura de processadores.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0022",
+      "nome": "Estatística Aplicada",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 3,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Estatística descritiva: medidas de tendência central e dispersão. Teoria da probabilidade e variáveis aleatórias. Distribuições de probabilidade. Inferência e testes de hipóteses.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0004",
+      "nome": "Análise e Projeto Orientado a Objetos",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 3,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Linguagem UML: diagramas estruturais e comportamentais. Padrões de análise. Padrões de projeto GoF (Criacionais, Estruturais, Comportamentais). Modelagem arquitetural de software orientado a objetos.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0009", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0203",
+      "nome": "Gestão de Qualidade de Software",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 3,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Conceitos de qualidade de produto e processo de software. Modelos de maturidade (CMMI, MPS.BR). Métricas de software. Técnicas e níveis de teste de software (unitário, integração, sistema, aceitação).",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0018",
+      "nome": "Processamento Digital de Imagens",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 4,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Representação digital de imagens. Operações pontuais e filtros espaciais. Transformações geométricas. Segmentação e extração de características. Reconhecimento de padrões em imagens.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0102", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0027",
+      "nome": "Programação para Dispositivos Móveis",
+      "ch": 90,
+      "creditos": 6,
+      "periodo_ideal": 4,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Arquitetura e ecossistemas de plataformas móveis. Desenvolvimento de interfaces táteis responsivas. Persistência de dados local em smartphones. Comunicação com APIs remotas e sensores.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0019", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0028",
+      "nome": "Planejamento e Gerência de Projetos",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 4,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Metodologias e boas práticas de gerenciamento de projetos segundo o Guia PMBOK e frameworks ágeis. Gestão de escopo, tempo, custo, qualidade, riscos e equipe.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0009", "tipo": "OU" }
+      ]
+    },
+    {
+      "codigo": "TAD0029",
+      "nome": "Arquitetura de Software",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 4,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Conceitos fundamentais de arquitetura de software. Estilos e padrões arquiteturais (MVC, Camadas, Microsserviços, Hexagonal). Atributos de qualidade e requisitos não funcionais. Avaliação arquitetural.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0103", "tipo": "OU" },
+        { "disciplina_codigo": "TAD0111", "tipo": "OU" },
+        { "disciplina_codigo": "TAD0009", "tipo": "OU" }
+      ]
+    },
+    {
+      "codigo": "TAD0030",
+      "nome": "Microcontroladores",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 4,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Arquitetura interna de microcontroladores. Programação embarcada em linguagem C/C++. Portas de E/S, temporizadores, interrupções e conversores A/D. Interfaces de comunicação serial (UART, SPI, I2C). Introdução à IoT.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0123", "tipo": "E" },
+        { "disciplina_codigo": "TAD0114", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0032",
+      "nome": "Metodologia do Trabalho Científico",
+      "ch": 30,
+      "creditos": 2,
+      "periodo_ideal": 4,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Ciência e conhecimento científico. Métodos e técnicas de pesquisa. Normas da ABNT aplicadas a trabalhos acadêmicos. Elaboração de projetos de pesquisa e monografias.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0204",
+      "nome": "Fundamentos e Técnicas em Ciências de Dados",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 4,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Pipeline de ciência de dados. Coleta, limpeza e pré-processamento de conjuntos de dados. Análise exploratória e visualização estatística. Modelagem preditiva básica com Python.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0102", "tipo": "E" },
+        { "disciplina_codigo": "TAD0022", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0108",
+      "nome": "Contexto Geográfico Regional",
+      "ch": 30,
+      "creditos": 2,
+      "periodo_ideal": 5,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Aspectos socioeconômicos, ambientais e territoriais do Rio Grande do Norte e do semiárido nordestino. Impactos do desenvolvimento tecnológico nas dinâmicas regionais.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0205",
+      "nome": "Trabalho de Conclusão de Curso I",
+      "ch": 30,
+      "creditos": 2,
+      "periodo_ideal": 5,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Planejamento e formulação da proposta de pesquisa ou projeto de desenvolvimento tecnológico. Definição de escopo, objetivos, justificativa e fundamentação teórica. Qualificação do projeto perante banca examinadora.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0015",
+      "nome": "Empreendedorismo",
+      "ch": 45,
+      "creditos": 3,
+      "periodo_ideal": 5,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Conceito e perfil empreendedor. Identificação de oportunidades de negócio em tecnologia da informação. Modelo de Negócios (Business Model Canvas). Validação de hipóteses e criação de Startups.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD0156",
+      "nome": "Projetos Aplicados I",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 5,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Desenvolvimento prático e integrado de soluções tecnológicas em equipe. Levantamento e detalhamento de requisitos de clientes reais. Prototipação, arquitetura e implementação das primeiras iterações do software.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0102", "tipo": "E" },
+        { "disciplina_codigo": "TAD0012", "tipo": "E" },
+        { "disciplina_codigo": "TAD0029", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0160",
+      "nome": "Sistemas Distribuídos",
+      "ch": 30,
+      "creditos": 2,
+      "periodo_ideal": 5,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Conceitos de arquiteturas distribuídas. Comunicação entre processos (RPC, RMI, mensageria). Sincronização e relógios lógicos. Tolerância a falhas e consistência em sistemas distribuídos.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0114", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0140",
+      "nome": "Trabalho de Conclusão de Curso II",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 6,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Execução, testes, consolidação e redação da monografia ou desenvolvimento da solução de software proposta no TCC I. Apresentação e defesa pública perante banca examinadora.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0205", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0157",
+      "nome": "Projetos Aplicados II",
+      "ch": 60,
+      "creditos": 4,
+      "periodo_ideal": 6,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Continuidade do projeto de software desenvolvido em Projetos Aplicados I. Execução de testes de aceitação e carga. Implantação (DevOps/CI/CD), homologação com o usuário final e encerramento do projeto.",
+      "requisitos": [
+        { "disciplina_codigo": "TAD0156", "tipo": "E" },
+        { "disciplina_codigo": "TAD0028", "tipo": "E" }
+      ]
+    },
+    {
+      "codigo": "TAD0035",
+      "nome": "Legislação e Ética em TI",
+      "ch": 30,
+      "creditos": 2,
+      "periodo_ideal": 6,
+      "tipo_vinculo": "OBRIGATORIA",
+      "departamento": "EAJ",
+      "ementa": "Fundamentos de ética profissional. Marco Civil da Internet e Lei Geral de Proteção de Dados (LGPD). Crimes cibernéticos, propriedade intelectual, patentes e licenciamento de software.",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD9998",
+      "nome": "Disciplinas Optativas",
+      "ch": 240,
+      "creditos": 16,
+      "periodo_ideal": 6,
+      "tipo_vinculo": "OPTATIVA",
+      "departamento": "EAJ",
+      "ementa": "Módulo flexível com disciplinas eletivas escolhidas pelo discente para aprofundamento temático (ex: Computação em Nuvem, DevOps, Criptografia, Tópicos Especiais).",
+      "requisitos": []
+    },
+    {
+      "codigo": "TAD9999",
+      "nome": "Atividades Complementares",
+      "ch": 180,
+      "creditos": 0,
+      "periodo_ideal": 6,
+      "tipo_vinculo": "COMPLEMENTAR",
+      "departamento": "EAJ",
+      "ementa": "Carga horária destinada à participação em eventos científicos, cursos de extensão, projetos de iniciação científica, monitoria e atividades extracurriculares formativas.",
+      "requisitos": []
+    }
+  ]
+}
+

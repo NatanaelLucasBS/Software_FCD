@@ -1,0 +1,61 @@
+classDiagram
+    class CursoDocument {
+        +ObjectId _id
+        +String codigo "01A"
+        +String sigla "TADS"
+        +String nome "Tecnologia em Análise e Desenvolvimento de Sistemas"
+        +String nivel "Graduação - Tecnológico"
+        +String unidade "EAJ - UFRN"
+        +Integer ano_versao 2019
+        +Integer ch_total_minima 2100
+        +Integer ch_obrigatoria 1680
+        +Integer ch_optativa 240
+        +Integer ch_complementar 180
+        +Integer duracao_semestres 6
+        +Boolean ativa true
+        +PeriodoGrade[] grade
+    }
+
+    class PeriodoGrade {
+        +Integer periodo "1 a 6"
+        +DisciplinaEmbutida[] disciplinas
+    }
+
+    class DisciplinaEmbutida {
+        +String codigo "TAD0102"
+        +String nome "Algoritmos e Programação"
+        +Integer ch 90
+        +Integer creditos 6
+        +String tipo_vinculo "OBRIGATORIA"
+    }
+
+    class DisciplinaDocument {
+        +String _id "TAD0009"
+        +String codigo "TAD0009"
+        +String nome "Programação Orientada a Objetos"
+        +Integer ch 60
+        +Integer creditos 4
+        +String departamento "EAJ"
+        +String ementa "Paradigma orientado a objetos..."
+        +CursoVinculo[] cursos_vinculados
+        +RequisitoItem[] requisitos
+    }
+
+    class CursoVinculo {
+        +String curso_sigla "TADS"
+        +Integer ano_matriz 2019
+        +Integer periodo_ideal 2
+        +String tipo_vinculo "OBRIGATORIA"
+    }
+
+    class RequisitoItem {
+        +String disciplina_codigo "TAD0102"
+        +String nome "Algoritmos e Programação"
+        +String tipo "E | OU"
+    }
+
+    CursoDocument *-- PeriodoGrade : contém (embedded)
+    PeriodoGrade *-- DisciplinaEmbutida : contém (embedded)
+    DisciplinaDocument *-- CursoVinculo : contém (embedded)
+    DisciplinaDocument *-- RequisitoItem : contém (embedded)
+

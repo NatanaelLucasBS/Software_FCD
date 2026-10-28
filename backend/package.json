@@ -1,0 +1,20 @@
+{
+  "name": "polygrade-backend",
+  "version": "1.0.0",
+  "description": "Backend API REST para o sistema PolyGrade de persistência poliglota",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0",
+    "neo4j-driver": "^5.18.0",
+    "pg": "^8.11.5"
+  }
+}
+

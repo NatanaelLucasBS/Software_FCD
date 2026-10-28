@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PolyGrade — Visualizador dos Modelos Lógicos (TADS 2019)</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .header {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      margin-bottom: 20px;
+    }
+    h1 {
+      margin: 0 0 10px 0;
+      color: #38bdf8;
+      font-size: 26px;
+    }
+    p {
+      margin: 5px 0;
+      color: #94a3b8;
+    }
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 12px 24px;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .tab-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+    }
+    .content-card {
+      display: none;
+      background: #1e293b;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      padding: 25px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    .content-card.active {
+      display: block;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+    .badge-blue { background: #0369a1; color: #e0f2fe; }
+    .badge-green { background: #047857; color: #d1fae5; }
+    .badge-purple { background: #6d28d9; color: #ede9fe; }
+    .diagram-area {
+      overflow-x: auto;
+      padding: 20px;
+      background: #0f172a;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      margin-top: 15px;
+    }
+    .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>PolyGrade — Modelagem Lógica Multiparadigma</h1>
+      <p>Estrutura Curricular TADS 2019 — UFRN (Universidade Federal do Rio Grande do Norte)</p>
+      <p>Alterne entre as abas abaixo para inspecionar cada um dos três modelos lógicos desenvolvidos.</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('relacional')">1. Modelo Relacional (SQL / 3FN)</button>
+      <button class="tab-btn" onclick="switchTab('documentos')">2. Modelo Documentos (MongoDB)</button>
+      <button class="tab-btn" onclick="switchTab('grafo')">3. Modelo Grafo (Neo4j / LPG)</button>
+    </div>
+
+    <!-- ABA 1: RELACIONAL -->
+    <div id="tab-relacional" class="content-card active">
+      <span class="badge badge-blue">Paradigma Relacional — 3ª Forma Normal</span>
+      <h2>Modelo Lógico Relacional (PostgreSQL 16)</h2>
+      <p>Normalizado em 3FN para garantir integridade referencial forte via chaves estrangeiras. A resolução de matrizes é tratada via tabela associativa (<code>MATRIZ_COMPONENTE</code>) e os pré-requisitos via auto-relacionamento (<code>PRE_REQUISITO</code>) com operador booleano (<code>'E'</code> ou <code>'OU'</code>).</p>
+      <div class="diagram-area">
+        <pre class="mermaid">
+erDiagram
+    CURSO ||--o{ ESTRUTURA_CURRICULAR : "1:N - oferta"
+    ESTRUTURA_CURRICULAR ||--o{ MATRIZ_COMPONENTE : "1:N - estrutura"
+    DISCIPLINA ||--o{ MATRIZ_COMPONENTE : "1:N - integra"
+    DISCIPLINA ||--o{ PRE_REQUISITO : "1:N - exige (alvo)"
+    DISCIPLINA ||--o{ PRE_REQUISITO : "1:N - e_requisito_de"
+
+    CURSO {
+        varchar(10) codigo PK "Código único (ex: '01A')"
+        varchar(20) sigla UK "Sigla do curso (ex: 'TADS')"
+        varchar(150) nome "Nome oficial completo"
+        varchar(50) nivel "Graduação - Tecnológico"
+        varchar(120) unidade "EAJ - UFRN"
+        varchar(30) modalidade "Presencial"
+    }
+
+    ESTRUTURA_CURRICULAR {
+        varchar(20) codigo_matriz PK "Ex: 'TADS2019'"
+        varchar(10) curso_codigo FK "FK para CURSO"
+        int ano_versao "2019"
+        int ch_total_minima "2100"
+        int ch_obrigatoria "1680"
+        int ch_optativa "240"
+        int ch_complementar "180"
+        int duracao_semestres "6"
+        boolean ativa "true"
+    }
+
+    DISCIPLINA {
+        varchar(10) codigo PK "Ex: 'TAD0102'"
+        varchar(150) nome "Algoritmos e Programação"
+        int ch "90"
+        int creditos "6"
+        varchar(30) departamento "EAJ"
+        text ementa "Lógica, vetores, modularização"
+    }
+
+    MATRIZ_COMPONENTE {
+        int id PK "Identificador único"
+        varchar(20) estrutura_codigo FK
+        varchar(10) disciplina_codigo FK
+        int periodo_ideal "1 a 6"
+        varchar(30) tipo_vinculo "OBRIGATORIA"
+    }
+
+    PRE_REQUISITO {
+        int id PK "Identificador único"
+        varchar(10) disciplina_alvo_codigo FK
+        varchar(10) disciplina_requisito_codigo FK
+        varchar(5) operador_logico "E ou OU"
+    }
+        </pre>
+      </div>
+    </div>
+
+    <!-- ABA 2: DOCUMENTOS -->
+    <div id="tab-documentos" class="content-card">
+      <span class="badge badge-green">Paradigma Documentos — Read-Optimized</span>
+      <h2>Modelo Lógico Não Relacional em Documentos (MongoDB 7.0)</h2>
+      <p>Estrutura mista otimizada: a coleção <code>cursos</code> embuti a grade completa por semestres (entrega a matriz inteira em 1 leitura atômica sem <code>JOIN</code>) e a coleção <code>disciplinas</code> gerencia o catálogo detalhado e o array de dependências para análise recursiva via <code>$graphLookup</code>.</p>
+      <div class="diagram-area">
+        <pre class="mermaid">
+classDiagram
+    class CursoDocument {
+        +ObjectId _id
+        +String codigo "01A"
+        +String sigla "TADS"
+        +String nome "Tecnologia em Análise e Desenvolvimento de Sistemas"
+        +Integer ano_versao 2019
+        +Integer ch_total_minima 2100
+        +PeriodoGrade[] grade
+    }
+
+    class PeriodoGrade {
+        +Integer periodo "1 a 6"
+        +DisciplinaEmbutida[] disciplinas
+    }
+
+    class DisciplinaEmbutida {
+        +String codigo "TAD0102"
+        +String nome "Algoritmos e Programação"
+        +Integer ch 90
+        +Integer creditos 6
+        +String tipo_vinculo "OBRIGATORIA"
+    }
+
+    class DisciplinaDocument {
+        +String _id "TAD0009"
+        +String codigo "TAD0009"
+        +String nome "Programação Orientada a Objetos"
+        +Integer ch 60
+        +CursoVinculo[] cursos_vinculados
+        +RequisitoItem[] requisitos
+    }
+
+    class CursoVinculo {
+        +String curso_sigla "TADS"
+        +Integer ano_matriz 2019
+        +Integer periodo_ideal 2
+    }
+
+    class RequisitoItem {
+        +String disciplina_codigo "TAD0102"
+        +String nome "Algoritmos e Programação"
+        +String tipo "E | OU"
+    }
+
+    CursoDocument *-- PeriodoGrade
+    PeriodoGrade *-- DisciplinaEmbutida
+    DisciplinaDocument *-- CursoVinculo
+    DisciplinaDocument *-- RequisitoItem
+        </pre>
+      </div>
+    </div>
+
+    <!-- ABA 3: GRAFO -->
+    <div id="tab-grafo" class="content-card">
+      <span class="badge badge-purple">Paradigma Grafo — Index-Free Adjacency</span>
+      <h2>Modelo Lógico Não Relacional em Grafo (Neo4j 5)</h2>
+      <p>Mapeia a grade como um Grafo Direcionado Acíclico (DAG). Nós <code>(:Curso)</code>, <code>(:Estrutura)</code> e <code>(:Disciplina)</code> são conectados por arestas direcionadas com propriedades. A navegação de pré-requisitos transitivos possui custo assintótico $O(1)$ por salto.</p>
+      <div class="diagram-area">
+        <pre class="mermaid">
+flowchart TD
+    C["(:Curso {codigo: '01A', sigla: 'TADS'})"]
+    E["(:Estrutura {codigo: 'TADS2019', ano: 2019})"]
+
+    D0102["(:Disciplina {codigo: 'TAD0102', nome: 'Algoritmos e Prog.'})"]
+    D0009["(:Disciplina {codigo: 'TAD0009', nome: 'Prog. Orientada a Objetos'})"]
+    D0019["(:Disciplina {codigo: 'TAD0019', nome: 'Prog. Web'})"]
+    D0027["(:Disciplina {codigo: 'TAD0027', nome: 'Prog. Dispositivos Móveis'})"]
+    D0028["(:Disciplina {codigo: 'TAD0028', nome: 'Planej. e Gerência Projetos'})"]
+    D0029["(:Disciplina {codigo: 'TAD0029', nome: 'Arquitetura de Software'})"]
+    D0156["(:Disciplina {codigo: 'TAD0156', nome: 'Projetos Aplicados I'})"]
+    D0157["(:Disciplina {codigo: 'TAD0157', nome: 'Projetos Aplicados II'})"]
+
+    C -->|POSSUI_ESTRUTURA| E
+    E -->|CONTEM {periodo: 1}| D0102
+    E -->|CONTEM {periodo: 2}| D0009
+    E -->|CONTEM {periodo: 3}| D0019
+    E -->|CONTEM {periodo: 4}| D0027
+    E -->|CONTEM {periodo: 4}| D0028
+    E -->|CONTEM {periodo: 4}| D0029
+    E -->|CONTEM {periodo: 5}| D0156
+    E -->|CONTEM {periodo: 6}| D0157
+
+    D0009 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0102
+    D0019 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0009
+    D0027 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0019
+    D0028 -.->|EXIGE_PRE_REQUISITO {tipo: 'OU'}| D0009
+    D0029 -.->|EXIGE_PRE_REQUISITO {tipo: 'OU'}| D0009
+    D0156 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0102
+    D0156 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0029
+    D0157 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0156
+    D0157 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0028
+        </pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark'
+    });
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.content-card').forEach(card => card.classList.remove('active'));
+
+      event.target.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
+

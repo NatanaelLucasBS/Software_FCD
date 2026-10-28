@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelo Lógico Relacional — PolyGrade (TADS 2019)</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 20px;
+    }
+    .header {
+      max-width: 1200px;
+      margin: 0 auto 20px auto;
+      padding: 20px;
+      background: #1e293b;
+      border-radius: 12px;
+      border: 1px solid #334155;
+    }
+    h1 {
+      margin: 0 0 10px 0;
+      color: #38bdf8;
+      font-size: 24px;
+    }
+    p {
+      margin: 5px 0;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #0369a1;
+      color: #e0f2fe;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    .diagram-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      overflow-x: auto;
+    }
+    .mermaid {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="badge">PARADIGMA RELACIONAL</span>
+    <span class="badge" style="background: #15803d;">3ª FORMA NORMAL (3FN)</span>
+    <span class="badge" style="background: #7e22ce;">POSTGRESQL 16</span>
+    <h1>Modelo Lógico 1: Abordagem Relacional (Entidade-Relacionamento)</h1>
+    <p><strong>Domínio:</strong> Estrutura Curricular TADS 2019 — UFRN (Universidade Federal do Rio Grande do Norte).</p>
+    <p>Modelagem normalizada que desacopla disciplinas de cursos, mapeia matrizes via entidade associativa e resolve pré-requisitos em auto-relacionamento com suporte a operadores booleanos (E / OU).</p>
+  </div>
+
+  <div class="diagram-container">
+    <pre class="mermaid">
+erDiagram
+    CURSO ||--o{ ESTRUTURA_CURRICULAR : "1:N - oferta"
+    ESTRUTURA_CURRICULAR ||--o{ MATRIZ_COMPONENTE : "1:N - estrutura"
+    DISCIPLINA ||--o{ MATRIZ_COMPONENTE : "1:N - integra"
+    DISCIPLINA ||--o{ PRE_REQUISITO : "1:N - exige (alvo)"
+    DISCIPLINA ||--o{ PRE_REQUISITO : "1:N - e_requisito_de"
+
+    CURSO {
+        varchar(10) codigo PK "Identificador único do curso (ex: '01A')"
+        varchar(20) sigla UK "Sigla usual (ex: 'TADS')"
+        varchar(150) nome "Nome completo oficial do curso"
+        varchar(50) nivel "Nível acadêmico (ex: 'Graduação - Tecnológico')"
+        varchar(120) unidade "Centro acadêmico (ex: 'EAJ - UFRN')"
+        varchar(30) modalidade "Presencial ou EaD"
+    }
+
+    ESTRUTURA_CURRICULAR {
+        varchar(20) codigo_matriz PK "Identificador da matriz (ex: 'TADS2019')"
+        varchar(10) curso_codigo FK "FK para CURSO(codigo)"
+        int ano_versao "Ano da homologação curricular (2019)"
+        int ch_total_minima "Carga horária mínima exigida (2100h)"
+        int ch_obrigatoria "Horas de componentes obrigatórios (1680h)"
+        int ch_optativa "Horas mínimas optativas (240h)"
+        int ch_complementar "Horas de atividades complementares (180h)"
+        int duracao_semestres "Duração ideal em semestres (6)"
+        boolean ativa "Indica vigência da matriz"
+    }
+
+    DISCIPLINA {
+        varchar(10) codigo PK "Código do componente (ex: 'TAD0102')"
+        varchar(150) nome "Nome da disciplina (ex: 'Algoritmos e Programação')"
+        int ch "Carga horária total (ex: 90h)"
+        int creditos "Créditos acadêmicos (ex: 6)"
+        varchar(30) departamento "Departamento de lotação (ex: 'EAJ')"
+        text ementa "Conteúdo programático resumido"
+    }
+
+    MATRIZ_COMPONENTE {
+        int id PK "Identificador único da vinculação"
+        varchar(20) estrutura_codigo FK "FK para ESTRUTURA_CURRICULAR"
+        varchar(10) disciplina_codigo FK "FK para DISCIPLINA"
+        int periodo_ideal "Semestre recomendado da grade (1 a 6)"
+        varchar(30) tipo_vinculo "OBRIGATORIA, OPTATIVA ou COMPLEMENTAR"
+    }
+
+    PRE_REQUISITO {
+        int id PK "Identificador único da dependência"
+        varchar(10) disciplina_alvo_codigo FK "Disciplina que exige o requisito"
+        varchar(10) disciplina_requisito_codigo FK "Disciplina necessária"
+        varchar(5) operador_logico "Operador booleano: 'E' ou 'OU'"
+    }
+    </pre>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      er: {
+        useMaxWidth: true,
+        entityPadding: 15
+      }
+    });
+  </script>
+</body>
+</html>
+

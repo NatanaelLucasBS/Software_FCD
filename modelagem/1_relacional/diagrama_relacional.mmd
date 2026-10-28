@@ -1,0 +1,52 @@
+erDiagram
+    CURSO ||--o{ ESTRUTURA_CURRICULAR : "1:N - oferta"
+    ESTRUTURA_CURRICULAR ||--o{ MATRIZ_COMPONENTE : "1:N - estrutura"
+    DISCIPLINA ||--o{ MATRIZ_COMPONENTE : "1:N - integra"
+    DISCIPLINA ||--o{ PRE_REQUISITO : "1:N - exige (alvo)"
+    DISCIPLINA ||--o{ PRE_REQUISITO : "1:N - e_requisito_de"
+
+    CURSO {
+        varchar(10) codigo PK "Identificador único do curso (ex: '01A')"
+        varchar(20) sigla UK "Sigla usual (ex: 'TADS')"
+        varchar(150) nome "Nome completo oficial do curso"
+        varchar(50) nivel "Nível acadêmico (ex: 'Graduação - Tecnológico')"
+        varchar(120) unidade "Centro acadêmico (ex: 'EAJ - UFRN')"
+        varchar(30) modalidade "Presencial ou EaD"
+    }
+
+    ESTRUTURA_CURRICULAR {
+        varchar(20) codigo_matriz PK "Identificador da matriz (ex: 'TADS2019')"
+        varchar(10) curso_codigo FK "FK para CURSO(codigo)"
+        int ano_versao "Ano da homologação curricular (2019)"
+        int ch_total_minima "Carga horária mínima exigida (2100h)"
+        int ch_obrigatoria "Horas de componentes obrigatórios (1680h)"
+        int ch_optativa "Horas mínimas optativas (240h)"
+        int ch_complementar "Horas de atividades complementares (180h)"
+        int duracao_semestres "Duração ideal em semestres (6)"
+        boolean ativa "Indica vigência da matriz"
+    }
+
+    DISCIPLINA {
+        varchar(10) codigo PK "Código do componente (ex: 'TAD0102')"
+        varchar(150) nome "Nome da disciplina (ex: 'Algoritmos e Programação')"
+        int ch "Carga horária total (ex: 90h)"
+        int creditos "Créditos acadêmicos (ex: 6)"
+        varchar(30) departamento "Departamento de lotação (ex: 'EAJ')"
+        text ementa "Conteúdo programático resumido"
+    }
+
+    MATRIZ_COMPONENTE {
+        int id PK "Identificador único da vinculação"
+        varchar(20) estrutura_codigo FK "FK para ESTRUTURA_CURRICULAR"
+        varchar(10) disciplina_codigo FK "FK para DISCIPLINA"
+        int periodo_ideal "Semestre recomendado da grade (1 a 6)"
+        varchar(30) tipo_vinculo "OBRIGATORIA, OPTATIVA ou COMPLEMENTAR"
+    }
+
+    PRE_REQUISITO {
+        int id PK "Identificador único da dependência"
+        varchar(10) disciplina_alvo_codigo FK "Disciplina que exige o requisito (ex: 'TAD0009')"
+        varchar(10) disciplina_requisito_codigo FK "Disciplina necessária (ex: 'TAD0102')"
+        varchar(5) operador_logico "Operador booleano: 'E' ou 'OU'"
+    }
+
