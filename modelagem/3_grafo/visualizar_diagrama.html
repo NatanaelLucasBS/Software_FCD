@@ -81,25 +81,25 @@ flowchart TD
     D0156["(:Disciplina {codigo: 'TAD0156', nome: 'Projetos Aplicados I'})"]
     D0157["(:Disciplina {codigo: 'TAD0157', nome: 'Projetos Aplicados II'})"]
 
-    C -->|POSSUI_ESTRUTURA| E
-    E -->|CONTEM {periodo: 1}| D0102
-    E -->|CONTEM {periodo: 2}| D0009
-    E -->|CONTEM {periodo: 3}| D0019
-    E -->|CONTEM {periodo: 4}| D0027
-    E -->|CONTEM {periodo: 4}| D0028
-    E -->|CONTEM {periodo: 4}| D0029
-    E -->|CONTEM {periodo: 5}| D0156
-    E -->|CONTEM {periodo: 6}| D0157
+    C -->|"POSSUI_ESTRUTURA"| E
+    E -->|"CONTEM (periodo 1)"| D0102
+    E -->|"CONTEM (periodo 2)"| D0009
+    E -->|"CONTEM (periodo 3)"| D0019
+    E -->|"CONTEM (periodo 4)"| D0027
+    E -->|"CONTEM (periodo 4)"| D0028
+    E -->|"CONTEM (periodo 4)"| D0029
+    E -->|"CONTEM (periodo 5)"| D0156
+    E -->|"CONTEM (periodo 6)"| D0157
 
-    D0009 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0102
-    D0019 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0009
-    D0027 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0019
-    D0028 -.->|EXIGE_PRE_REQUISITO {tipo: 'OU'}| D0009
-    D0029 -.->|EXIGE_PRE_REQUISITO {tipo: 'OU'}| D0009
-    D0156 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0102
-    D0156 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0029
-    D0157 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0156
-    D0157 -->|EXIGE_PRE_REQUISITO {tipo: 'E'}| D0028
+    D0009 -->|"EXIGE_PRE_REQUISITO (tipo E)"| D0102
+    D0019 -->|"EXIGE_PRE_REQUISITO (tipo E)"| D0009
+    D0027 -->|"EXIGE_PRE_REQUISITO (tipo E)"| D0019
+    D0028 -.->|"EXIGE_PRE_REQUISITO (tipo OU)"| D0009
+    D0029 -.->|"EXIGE_PRE_REQUISITO (tipo OU)"| D0009
+    D0156 -->|"EXIGE_PRE_REQUISITO (tipo E)"| D0102
+    D0156 -->|"EXIGE_PRE_REQUISITO (tipo E)"| D0029
+    D0157 -->|"EXIGE_PRE_REQUISITO (tipo E)"| D0156
+    D0157 -->|"EXIGE_PRE_REQUISITO (tipo E)"| D0028
     </pre>
   </div>
 

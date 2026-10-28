@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/modelagem', express.static(path.join(rootDir, 'modelagem')));
 
 // ==========================================
 // 1. Conexões com os Bancos de Dados
