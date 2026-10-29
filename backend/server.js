@@ -344,7 +344,6 @@ const neo4jQueries = {
       let cypher = `
         MATCH (c:Curso {sigla: $cursoSigla})-[:POSSUI_ESTRUTURA]->(e:Estrutura)
         MATCH (e)-[r:CONTEM]->(d:Disciplina)
-        OPTIONAL MATCH (d)-[reqRel:EXIGE_PRE_REQUISITO]->(req:Disciplina)
         WHERE 1=1
       `;
       const params = { cursoSigla };
@@ -360,6 +359,7 @@ const neo4jQueries = {
       }
 
       cypher += `
+        OPTIONAL MATCH (d)-[reqRel:EXIGE_PRE_REQUISITO]->(req:Disciplina)
         WITH r.periodo AS periodo_ideal, d, r.tipo_vinculo AS tipo_vinculo,
              collect(DISTINCT { disciplina_codigo: req.codigo, tipo: reqRel.tipo }) AS requisitos
         RETURN 
